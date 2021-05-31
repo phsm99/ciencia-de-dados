@@ -1,0 +1,13 @@
+sqoop
+
+bin/sqoop import --connect jdbc:mysql://localhost/IGTI?zeroDateTimeBehavior=convert_to_null --username root --password igti --table CLIENTE_VENDA -m 1 --bindir /usr/local/sqoop/lib --target-dir /igti
+
+
+hive
+bin/schematool -initSchema -dbType derby
+
+create table 
+CREATE TABLE CLIENTE_VENDA (ID INT, NOME STRING, QTDE_ITENS INT, TOTAL_VENDAS FLOAT, LIMITE_CREDITO FLOAT, ESTADO STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' STORED AS TEXTFILE LOCATION '/hive/firstDB/cliente_Venda';
+
+load tabel
+LOAD DATA INPATH 'hdfs://localhost:54310/igti/part-m-00000' INTO TABLE CLIENTE_VENDA;

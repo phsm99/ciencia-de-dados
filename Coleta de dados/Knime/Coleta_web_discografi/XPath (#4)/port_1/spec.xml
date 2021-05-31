@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="spec.xml">
+<entry key="spec_name" type="xstring" value="default"/>
+<entry key="number_columns" type="xint" value="4"/>
+<config key="column_spec_0">
+<entry key="column_name" type="xstring" value="column1"/>
+<config key="element_names">
+<entry key="array-size" type="xint" value="0"/>
+</config>
+<config key="column_type">
+<entry key="cell_class" type="xstring" value="org.knime.core.data.def.StringCell"/>
+</config>
+<config key="column_domain">
+<config key="possible_values">
+<entry key="array-size" type="xint" value="1"/>
+<config key="0">
+<entry key="datacell" type="xstring" value="org.knime.core.data.def.StringCell"/>
+<config key="org.knime.core.data.def.StringCell">
+<entry key="StringCell" type="xstring" value="https://pt.wikipedia.org/wiki/Hillsong_United"/>
+</config>
+</config>
+</config>
+</config>
+<config key="column_properties"/>
+<config key="meta_data"/>
+</config>
+<config key="column_spec_1">
+<entry key="column_name" type="xstring" value="Document"/>
+<config key="element_names">
+<entry key="array-size" type="xint" value="0"/>
+</config>
+<config key="column_type">
+<entry key="cell_class" type="xstring" value="org.knime.core.data.xml.XMLCell"/>
+</config>
+<config key="column_domain"/>
+<config key="column_properties"/>
+<config key="meta_data"/>
+</config>
+<config key="column_spec_2">
+<entry key="column_name" type="xstring" value="null"/>
+<config key="element_names">
+<entry key="array-size" type="xint" value="0"/>
+</config>
+<config key="column_type">
+<entry key="cell_class" type="xstring" value="org.knime.core.data.def.StringCell"/>
+</config>
+<config key="column_domain">
+<config key="possible_values">
+<entry key="array-size" type="xint" value="1"/>
+<config key="0">
+<entry key="datacell" type="xstring" value="org.knime.core.data.def.StringCell"/>
+<config key="org.knime.core.data.def.StringCell">
+<entry key="StringCell" type="xstring" value="%%00010Lançamento%%00010Título do álbum%%00010Observação%%00010%%00010%%000101999%%00010Everyday%%000101º álbum ao vivo%%00010%%00010%%000102000%%00010Best Friend%%000102º álbum ao vivo%%00010%%00010%%000102001%%00010King of Majesty%%000103º álbum ao vivo%%00010%%00010%%000102002%%00010To the Ends of the Earth%%000104º álbum ao vivo%%00010%%00010%%000102004%%00010More than Life%%000105º álbum ao vivo%%00010%%00010%%000102005%%00010Look to You%%000106º álbum ao vivo%%00010%%00010%%000102006%%00010United We Stand%%000107º álbum ao vivo%%00010%%00010%%000102007%%00010All of the Above%%000101º álbum em estúdio%%00010%%00010%%000102008%%00010The I Heart Revolution: With Hearts as One%%000108º álbum ao vivo%%00010%%00010%%000102009%%00010Across the Earth: Tear Down the Walls%%000109º álbum ao vivo%%00010%%00010%%000102011%%00010Aftermath%%000102º álbum em estúdio%%00010%%00010%%000102012%%00010Live in Miami%%0001010º álbum ao vivo%%00010%%00010%%000102013%%00010Zion%%000103º álbum em estúdio%%00010%%00010%%000102013%%00010Zion (Acoustic Sessions)%%0001011º álbum ao vivo%%00010%%00010%%000102014%%00010White Allbum: The Remix Project%%000101° álbum remixado%%00010%%00010%%000102015%%00010Empires%%000104º álbum de estúdio%%00010%%00010%%000102016%%00010Of Dirt and Grace: Live from the Land%%0001012º álbum ao vivo%%00010%%00010%%000102017%%00010Wonder%%000105º álbum de estúdio%%00010%%00010%%000102019%%00010People%%0001013º álbum ao vivo%%00010"/>
+</config>
+</config>
+</config>
+</config>
+<config key="column_properties"/>
+<config key="meta_data"/>
+</config>
+<config key="column_spec_3">
+<entry key="column_name" type="xstring" value="null(#0)"/>
+<config key="element_names">
+<entry key="array-size" type="xint" value="0"/>
+</config>
+<config key="column_type">
+<entry key="cell_class" type="xstring" value="org.knime.core.data.xml.XMLCell"/>
+</config>
+<config key="column_domain"/>
+<config key="column_properties"/>
+<config key="meta_data"/>
+</config>
+</config>
