@@ -1,6 +1,6 @@
 # Ocorrências Acidentes BH 2019
 
-Esse diretório contém um trabalho feito no Power BI criando um dashboard Estratégico e um dashboard Operacional a partir da base de dados pública da Prefeitura de Belo Horizonte - Minas Gerais sobre o registro de ocorrências de acidente de trânsito no ano de 2019.
+Esse diretório contém um trabalho feito no Power BI durante a pós-Graduação criando um dashboard Estratégico e um dashboard Operacional a partir da base de dados pública da Prefeitura de Belo Horizonte - Minas Gerais sobre o registro de ocorrências de acidente de trânsito no ano de 2019.
 
 Não foi possível utilizar as informações de geolocalização conforme disponibilizadas.
 
