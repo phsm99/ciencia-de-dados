@@ -1,0 +1,148 @@
+###################################################################################################################################################
+# Tecnicas Estatisticas de Predição
+# Professor: Otaviano Francisco Neves
+###################################################################################################################################################
+
+#####################        Aula Series Temporais    #############################################################################################
+
+###################################################################################################################################################
+#####################  Modelos ARIMA  ########################################################################################################
+###################################################################################################################################################
+
+#Series temporais e analises preditivas
+########################################################################################
+
+
+#pacotes essencias utilizados durante o curso
+install.packages("forecast")
+install.packages("ggplot2")
+
+library(forecast)
+library(ggplot2)
+
+#cria uma serie temporal normalmente distribuida
+
+serie1 = rnorm(60)
+serie1 = ts(serie1,start = c(2012,1), end=c(2016,12), frequency=12)
+plot(serie1)
+
+########################################################################################
+
+acf(serie1)
+pacf(serie1)
+
+########################################################################################
+#Importa e cria  uma serie temporal
+
+setwd("C:\\Users\\Otaviano\\Desktop\\RLR\\Pós Graduaçao\\2021-1\\CDBD - ME - OF8T2 e T1")# direciona o R para pasta
+getwd() # visualiza a pasta de trabalho do R
+dados1 <- read.csv2("Dados de Emprego_IA.csv") # Leitura do arquivo csv no R
+
+serie2 = ts(dados1$Comercio,start = c(2003,1), end=c(2007,12), frequency=12)
+class(serie2)
+plot(serie2)
+
+serie3 = ts(dados1$Alimento,start = c(2003,1), end=c(2007,12), frequency=12)
+class(serie3)
+plot(serie3)
+
+serie4 = ts(dados1$Metalurgia,start = c(2003,1), end=c(2007,12), frequency=12)
+class(serie4)
+plot(serie4)
+
+
+#####################  Identificação do Modelo  ####################################
+
+
+autoplot(serie2)
+
+serie2dif = diff(serie2)
+autoplot(serie2dif)
+
+acf(serie2dif)
+pacf(serie2dif)
+
+#####################  Estimação do Modelo  ####################################
+
+modelo1=arima(serie2, order = c(1, 1, 0),seasonal = list(order = c(1, 1, 0)))
+
+modelo1
+
+
+#####################  Validação do Modelo  ####################################
+
+resid1 = modelo1$residuals
+
+autoplot(resid1)
+hist(resid1)
+boxplot(resid1)
+acf(resid1)
+pacf(resid1)
+
+#####################  Previsão do Modelo  ####################################
+
+forecast(modelo1, 12, level=c(80,95))
+
+autoplot(forecast(modelo1, 12, level=c(80,95)))
+
+
+#####################  Modelo Autoarima ####################################
+
+
+modelo2 = auto.arima(serie2);modelo2
+
+
+######################comparando modelos#####################
+
+
+treino = window(serie2,2003,c(2006,12))
+teste  = window(serie2,2007,c(2007,12))
+
+modelo1=arima(treino, order = c(1, 1, 0),seasonal = list(order = c(1, 1, 0)))
+prev1 = forecast(modelo1, h=12)
+print(prev1$mean)
+autoplot(prev1)
+
+modelo2 <- ets(treino, "AAA")
+prev2 = forecast(modelo2, h=12)
+print(prev2$mean)
+autoplot(prev2)
+
+plot(serie2)
+lines(prev1$mean, col="blue")
+lines(prev2$mean, col="red")
+lines(teste, col="green")
+legend("topleft",legend=c("SARIMA","AAA","Teste"), col = c("blue","red","green"), lty=1:2, cex=0.5)
+
+
+accuracy(prev1,teste )
+accuracy(prev2,teste )
+#########################################################################################
+
+######################comparando modelos automáticos #####################
+
+
+modelo1 = ets(treino);modelo1
+modelo2 = auto.arima(treino);modelo2
+modelo3 = nnetar(treino);modelo3
+
+prev1 = forecast(modelo1, h=12)
+prev2 = forecast(modelo2, h=12)
+prev3 = forecast(modelo3, h=12)
+
+
+plot(serie2)
+lines(prev1$mean, col="blue")
+lines(prev2$mean, col="red")
+lines(prev3$mean, col="green")
+legend("topleft",legend=c("SARIMA","ETS","RN"), col = c("blue","red","green"), lty=1:2, cex=0.5)
+
+
+accuracy(prev1,teste )
+accuracy(prev2,teste )
+accuracy(prev3,teste )
+
+########################################################################################
+
+
+

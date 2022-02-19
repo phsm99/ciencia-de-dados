@@ -1,0 +1,181 @@
+##############################################################################################################################################################
+# Modelos Estatisticos 
+# Professor: Otaviano Francisco Neves
+##############################################################################################################################################################
+
+#####################        Aula Regressão logistica    #####################################################################################################
+
+##############################################################################################################################################################
+#####################  Regressão  logística  Simples #########################################################################################################
+##############################################################################################################################################################
+
+setwd("C:\\Users\\Otaviano\\Desktop\\RLR\\Pós Graduaçao\\2021-1\\CDBD - ME - OF8T2 e T1")
+getwd()
+Dados <- read.csv2("Dados Titanic.csv")
+
+summary(Dados)
+
+attach(Dados)
+
+Classe <- as.factor(Classe)
+Sexo <- as.factor(Sexo)
+Sobrevivente  <- as.factor(Sobrevivente)
+
+summary(Dados)
+
+table(Sobrevivente,Sexo)
+
+
+################# ODDS - Razão de Chances ######################
+
+prop.table(table(Sobrevivente,Sexo),2)
+
+CHF <- prop.table(table(Sobrevivente,Sexo),2) [2,1]/
+  prop.table(table(Sobrevivente,Sexo),2) [1,1]
+
+CHF
+
+
+prop.table(table(Sobrevivente,Sexo),2) [2,1]
+prop.table(table(Sobrevivente,Sexo),2) [1,1]
+
+CHM <- prop.table(table(Sobrevivente,Sexo),2) [2,2]/
+  prop.table(table(Sobrevivente,Sexo),2) [1,2]
+
+CHM
+
+RCH <- CHM/CHF
+
+RCH
+
+RCH1 <- CHF/CHM
+
+RCH
+RCH1
+
+############### Teste Qui-Quadrado ###########################
+
+
+chisq.test(Sobrevivente,Sexo)
+
+chisq.test(Sobrevivente,Classe)
+
+
+
+################################################################
+
+
+modelo1<- glm(Sobrevivente~Sexo,family=binomial(link="logit"))
+summary(modelo1)
+modelo1$coefficients
+odds <- exp(modelo1$coefficients)
+
+odds
+
+modelo2<- glm(Sobrevivente~Idade,family=binomial(link="logit"));modelo2
+summary(modelo2)
+modelo2$coefficients
+odds <- exp(modelo2$coefficients)
+odds
+
+
+modelo3<-glm(Sobrevivente~Classe,family=binomial(link="logit"));modelo3
+summary(modelo3)
+modelo3$coefficients
+odds <- exp(modelo3$coefficients)
+odds
+
+
+
+class(Dados$Classe)
+Dados$Classecat <- as.numeric(Dados$Classe)
+class(Dados$Classecat)
+
+attach(Dados)
+
+modelo4=glm(Sobrevivente~Classecat,family=binomial(link="logit"));modelo4
+summary(modelo4)
+modelo4$coefficients
+odds <- exp(modelo4$coefficients)
+
+
+##############################################################################################################################################################
+#####################  Regressão logística  Multipla #########################################################################################################
+##############################################################################################################################################################
+
+
+modelo5=glm(Sobrevivente~Sexo+Idade+Irmãos+Pais+Classe,family=binomial(link="logit"));modelo5
+summary(modelo5)
+modelo5$coefficients
+
+odds <- exp(modelo5$coefficients)
+
+odds
+
+modelo6=glm(Sobrevivente~Sexo+Idade+Irmãos+Classe,family=binomial(link="logit"));modelo6
+summary(modelo6)
+modelo6$coefficients
+odds <- exp(modelo6$coefficients)
+odds
+
+
+
+
+
+#################################### Previsão ########################################
+modelo6$coefficients
+
+#(Intercept) Sexomasculino         Idade        Irmãos       Classe2 
+#4.3342009    -2.6276789    -0.0447597    -0.3801898    -1.4143597 
+#Classe3 
+#-2.6526178 
+# sexo masculino, Idade = 12 , irmaos = 1, classe = 1
+
+Y = 4.3342009 -2.6276789*1 -0.0447597*12 -0.3801898*1 -1.4143597*0 -2.6526178*0
+
+Y 
+
+oddsgeral = exp(Y)
+
+oddsgeral
+
+PY = oddsgeral/(1+oddsgeral)
+
+PY
+
+
+predict(modelo6, data.frame(Sexo=c("masculino") , Idade = c(12), Irmãos= c(1), Classe = c("1")), type = "response")
+
+
+
+
+############################ Classificação - Matriz de Confusão #######################
+
+prev <- as.factor(
+  ifelse(
+    predict(modelo7, 
+            type = "response")
+    >0.5,"1","0"))
+
+Dados$prev<- as.factor(prev)
+
+attach(Dados)
+
+
+table(Sobrevivente,prev)
+
+
+table(Sobrevivente)
+
+prop.table(table(Sobrevivente,prev))
+
+Ac =  prop.table(table(Sobrevivente,prev)) [1,1] +
+  prop.table(table(Sobrevivente,prev)) [2,2]
+
+
+Ac 
+
+
+
+#######################################################################################
+#######################################################################################
