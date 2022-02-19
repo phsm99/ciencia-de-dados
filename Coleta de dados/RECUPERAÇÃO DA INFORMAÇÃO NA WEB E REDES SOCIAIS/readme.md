@@ -1,3 +1,4 @@
+Foi necessário hospedar o arquivo do Knime no Google Drive por causa do tamanho. Para acessar o arquivo acesse o link no arquivo Arquivo Knime.txt
 # Preview do projeto:
 ![image](https://user-images.githubusercontent.com/34166238/154808193-0fda12d6-5b07-4bb1-9df5-77ea7afab691.png)
 
